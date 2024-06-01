@@ -63,7 +63,7 @@ export class GifsService {
     const params = new HttpParams()
       .set('api_key', this.apiKey)
       .set('q', tag)
-      .set('limit', '30');
+      .set('limit', '20');
 
     const request = this.http.get<IGifsSearchResponse>(endpoint, { params }).pipe(
       catchError(error => {
