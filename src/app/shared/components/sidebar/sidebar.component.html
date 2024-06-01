@@ -1,0 +1,15 @@
+<div class="bg-dark border-right p3" id="sidebar">
+  <h3 class="text-white">Sidebar</h3>
+
+  <hr class="text-white">
+
+  <div class="list-group list-reset">
+    <button
+      *ngFor="let g of tags"
+      class="list-group-item list-group-item-action"
+      (click)="searchTag(g)"
+    >
+      {{ g | titlecase}}
+    </button>
+  </div>
+</div>
