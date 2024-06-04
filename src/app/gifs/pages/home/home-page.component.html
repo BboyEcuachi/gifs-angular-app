@@ -1,4 +1,12 @@
-<div class="container" id="home">
+<div
+  class="container"
+  id="home"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="scrolled()"
+  [scrollWindow]="false"
+>
   <div class="row p-3">
     <div class="col-12">
       <gifs-search-box></gifs-search-box>

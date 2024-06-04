@@ -14,4 +14,8 @@ export class HomePageComponent {
   get gifs() {
     return this.gifsService.gifList;
   }
+
+  scrolled() {
+    this.gifsService.searchMore();
+  }
 }

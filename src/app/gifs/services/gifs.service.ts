@@ -53,7 +53,7 @@ export class GifsService {
     this.searchTag(this._tagHistory[0]);
   }
 
-  async searchTag(tag: string): Promise<void> {
+  async searchTag(tag: string, offset = 0): Promise<void> {
 
     if (tag.length === 0) return;
 
@@ -63,7 +63,8 @@ export class GifsService {
     const params = new HttpParams()
       .set('api_key', this.apiKey)
       .set('q', tag)
-      .set('limit', '20');
+      .set('offset', offset)
+      .set('limit', 10);
 
     const request = this.http.get<IGifsSearchResponse>(endpoint, { params }).pipe(
       catchError(error => {
@@ -73,6 +74,13 @@ export class GifsService {
     );
 
     const { data } = await firstValueFrom(request);
-    this.gifList = data;
+
+    if (!offset) this.gifList = data;
+    else this.gifList.push(...data);
+  }
+
+  async searchMore() {
+    const lastTag = this._tagHistory[0];
+    this.searchTag(lastTag, this.gifList.length);
   }
 }
